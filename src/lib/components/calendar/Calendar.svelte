@@ -1,0 +1,180 @@
+<script lang="ts">
+	import { DatePicker } from '@ark-ui/svelte';
+	import { cn } from '$lib/utils';
+	import MingcuteLeftLine from '~icons/mingcute/left-line';
+	import MingcuteRightLine from '~icons/mingcute/right-line';
+
+	let {
+		class: className = '',
+		lazyMount = true,
+		unmountOnExit = true,
+		...rest
+	}: {
+		class?: string;
+		lazyMount?: boolean;
+		unmountOnExit?: boolean;
+		[key: string]: unknown;
+	} = $props();
+
+	const cellClass = cn(
+		'inline-flex items-center justify-center',
+		'h-9 w-full min-w-9',
+		'select-none whitespace-nowrap font-normal text-sm text-foreground leading-none',
+		'rounded-lg border border-transparent',
+		'hover:bg-accent hover:text-accent-foreground',
+		'data-today:after:absolute data-today:after:bottom-1 data-today:after:left-1/2 data-today:after:size-1 data-today:after:-translate-x-1/2 data-today:after:rounded-full data-today:after:bg-primary data-today:data-selected:after:bg-background',
+		'outline-none focus-visible:border-primary focus-visible:ring-[3px] focus-visible:ring-ring-focus',
+		'data-disabled:pointer-events-none data-disabled:opacity-64',
+		'data-unavailable:pointer-events-none data-unavailable:line-through data-unavailable:opacity-64',
+		'data-selected:bg-primary! data-selected:text-primary-foreground!'
+	);
+
+	const navBtnClass = cn(
+		'inline-flex items-center justify-center size-8 rounded-lg border border-border',
+		'bg-transparent hover:bg-accent hover:text-accent-foreground',
+		'disabled:opacity-40 transition-colors'
+	);
+</script>
+
+<DatePicker.Root
+	class={cn('[--cell-size:--spacing(9)]', 'w-fit', className)}
+	data-slot="calendar"
+	inline
+	{lazyMount}
+	{unmountOnExit}
+	{...rest}
+>
+	<DatePicker.View view="day" class="flex flex-col gap-1" data-slot="calendar-view">
+		<DatePicker.ViewControl
+			class="relative flex h-auto w-full items-center gap-1.5"
+			data-slot="calendar-view-control"
+		>
+			<DatePicker.PrevTrigger class={navBtnClass} data-slot="calendar-prev-trigger">
+				<MingcuteLeftLine class="size-4" />
+			</DatePicker.PrevTrigger>
+			<DatePicker.ViewTrigger
+				class="hover:bg-accent hover:text-accent-foreground h-8 flex-1 rounded-lg px-2 text-sm font-medium transition-colors"
+				data-slot="calendar-view-trigger"
+			>
+				<DatePicker.RangeText data-slot="calendar-range-text" />
+			</DatePicker.ViewTrigger>
+			<DatePicker.NextTrigger class={navBtnClass} data-slot="calendar-next-trigger">
+				<MingcuteRightLine class="size-4" />
+			</DatePicker.NextTrigger>
+		</DatePicker.ViewControl>
+		<DatePicker.Context>
+			{#snippet render(api)}
+				<DatePicker.Table class="group w-full min-w-60 border-collapse" data-slot="calendar-table">
+					<DatePicker.TableHead data-slot="calendar-table-head">
+						<DatePicker.TableRow class="mt-1 flex w-full" data-slot="calendar-table-row">
+							{#each api().weekDays as weekDay, i (i)}
+								<DatePicker.TableHeader
+									class="text-muted-foreground-dim flex h-(--cell-size) w-full items-center justify-center rounded-lg text-xs font-medium select-none"
+									data-slot="calendar-table-header"
+								>
+									{weekDay.narrow}
+								</DatePicker.TableHeader>
+							{/each}
+						</DatePicker.TableRow>
+					</DatePicker.TableHead>
+					<DatePicker.TableBody data-slot="calendar-table-body">
+						{#each api().weeks as week, i (i)}
+							<DatePicker.TableRow class="mt-1 flex w-full" data-slot="calendar-table-row">
+								{#each week as day (day.toString())}
+									<DatePicker.TableCell
+										class="relative h-(--cell-size) w-full text-center select-none [&:first-child[aria-selected=true]_div]:rounded-l-lg [&:last-child[aria-selected=true]_div]:rounded-r-lg"
+										data-slot="calendar-table-cell"
+										value={day}
+									>
+										<DatePicker.TableCellTrigger
+											class={cellClass}
+											data-slot="calendar-table-cell-trigger"
+										>
+											{day.day}
+										</DatePicker.TableCellTrigger>
+									</DatePicker.TableCell>
+								{/each}
+							</DatePicker.TableRow>
+						{/each}
+					</DatePicker.TableBody>
+				</DatePicker.Table>
+			{/snippet}
+		</DatePicker.Context>
+	</DatePicker.View>
+
+	<DatePicker.View view="month" class="flex flex-col gap-1" data-slot="calendar-month-view">
+		<DatePicker.ViewControl class="relative flex h-auto w-full items-center gap-1.5">
+			<DatePicker.PrevTrigger class={navBtnClass}>
+				<MingcuteLeftLine class="size-4" />
+			</DatePicker.PrevTrigger>
+			<DatePicker.ViewTrigger
+				class="hover:bg-accent hover:text-accent-foreground h-8 flex-1 rounded-lg px-2 text-sm font-medium transition-colors"
+			>
+				<DatePicker.RangeText />
+			</DatePicker.ViewTrigger>
+			<DatePicker.NextTrigger class={navBtnClass}>
+				<MingcuteRightLine class="size-4" />
+			</DatePicker.NextTrigger>
+		</DatePicker.ViewControl>
+		<DatePicker.Context>
+			{#snippet render(api)}
+				<DatePicker.Table class="group w-full min-w-60 border-collapse">
+					<DatePicker.TableBody>
+						{#each api().getMonthsGrid() as months, i (i)}
+							<DatePicker.TableRow class="mt-1 flex w-full">
+								{#each months as month (month.value)}
+									<DatePicker.TableCell
+										class="relative h-(--cell-size) w-full text-center select-none"
+										value={month.value}
+									>
+										<DatePicker.TableCellTrigger class={cn(cellClass, 'w-16')}>
+											{month.label}
+										</DatePicker.TableCellTrigger>
+									</DatePicker.TableCell>
+								{/each}
+							</DatePicker.TableRow>
+						{/each}
+					</DatePicker.TableBody>
+				</DatePicker.Table>
+			{/snippet}
+		</DatePicker.Context>
+	</DatePicker.View>
+
+	<DatePicker.View view="year" class="flex flex-col gap-1" data-slot="calendar-year-view">
+		<DatePicker.ViewControl class="relative flex h-auto w-full items-center gap-1.5">
+			<DatePicker.PrevTrigger class={navBtnClass}>
+				<MingcuteLeftLine class="size-4" />
+			</DatePicker.PrevTrigger>
+			<DatePicker.ViewTrigger
+				class="hover:bg-accent hover:text-accent-foreground h-8 flex-1 rounded-lg px-2 text-sm font-medium transition-colors"
+			>
+				<DatePicker.RangeText />
+			</DatePicker.ViewTrigger>
+			<DatePicker.NextTrigger class={navBtnClass}>
+				<MingcuteRightLine class="size-4" />
+			</DatePicker.NextTrigger>
+		</DatePicker.ViewControl>
+		<DatePicker.Context>
+			{#snippet render(api)}
+				<DatePicker.Table class="group w-full min-w-60 border-collapse">
+					<DatePicker.TableBody>
+						{#each api().getYearsGrid() as years, i (i)}
+							<DatePicker.TableRow class="mt-1 flex w-full">
+								{#each years as year (year.value)}
+									<DatePicker.TableCell
+										class="relative h-(--cell-size) w-full text-center select-none"
+										value={year.value}
+									>
+										<DatePicker.TableCellTrigger class={cn(cellClass, 'w-16')}>
+											{year.label}
+										</DatePicker.TableCellTrigger>
+									</DatePicker.TableCell>
+								{/each}
+							</DatePicker.TableRow>
+						{/each}
+					</DatePicker.TableBody>
+				</DatePicker.Table>
+			{/snippet}
+		</DatePicker.Context>
+	</DatePicker.View>
+</DatePicker.Root>
