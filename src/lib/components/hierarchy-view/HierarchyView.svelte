@@ -5,14 +5,8 @@
 	import MingcuteRightLine from '~icons/mingcute/right-line';
 	import MingcuteFileLine from '~icons/mingcute/file-line';
 	import { SvelteSet } from 'svelte/reactivity';
+	import type { AnyNode } from '.';
 
-	type AnyNode = {
-		id?: string;
-		name?: string;
-		label?: string;
-		children?: AnyNode[];
-		[key: string]: unknown;
-	};
 	type DropTarget = { value: string; position: 'before' | 'inside' | 'after' } | null;
 
 	let {
@@ -60,6 +54,24 @@
 	let isKeyboardMode = $state(false);
 	let justMovedValue = $state<string | null>(null);
 	let justMovedTimer: ReturnType<typeof setTimeout> | null = null;
+
+	// Tracks the last children reference we sent via onDataChange so we can
+	// distinguish an external data update from the parent echoing our own change back.
+	let _sentDataRef: AnyNode[] = untrack(() => data);
+
+	function emitDataChange() {
+		_sentDataRef = treeData.children ?? [];
+		onDataChange?.(_sentDataRef);
+	}
+
+	$effect(() => {
+		const snapshot = data;
+		untrack(() => {
+			if (isDragging || renamingValue !== null) return;
+			if (snapshot === _sentDataRef) return;
+			treeData = { children: structuredClone(snapshot) };
+		});
+	});
 
 	function portal(node: HTMLElement) {
 		document.body.appendChild(node);
@@ -229,7 +241,7 @@
 			siblings[info.index - 1]
 		];
 		treeData = replaceChildren(treeData, getValue(info.parent), siblings);
-		onDataChange?.(treeData.children ?? []);
+		emitDataChange();
 		flashMoved(targetValue);
 	}
 
@@ -242,7 +254,7 @@
 			siblings[info.index]
 		];
 		treeData = replaceChildren(treeData, getValue(info.parent), siblings);
-		onDataChange?.(treeData.children ?? []);
+		emitDataChange();
 		flashMoved(targetValue);
 	}
 
@@ -267,7 +279,7 @@
 			onExpandedChange?.({ expandedValue });
 		}
 
-		onDataChange?.(treeData.children ?? []);
+		emitDataChange();
 		flashMoved(targetValue);
 	}
 
@@ -293,7 +305,7 @@
 
 		treeData = replaceChildren(treeData, getValue(grandInfo.parent), newGrandChildren);
 
-		onDataChange?.(treeData.children ?? []);
+		emitDataChange();
 		flashMoved(targetValue);
 	}
 
@@ -397,7 +409,7 @@
 			selectedValue = selectedValue.filter((v) => !deleted.has(v));
 			pivot = pivot && !deleted.has(pivot) ? pivot : null;
 			onSelectionChange?.({ selectedValue });
-			onDataChange?.(treeData.children ?? []);
+			emitDataChange();
 		} else if (e.key === 'Escape') {
 			selectedValue = [];
 			pivot = null;
@@ -485,7 +497,7 @@
 			const nodesToInsert = findNodes(treeData, vals);
 			const newTree = removeNodes(treeData, vals);
 			treeData = { ...newTree, children: [...(newTree.children ?? []), ...nodesToInsert] };
-			onDataChange?.(treeData.children ?? []);
+			emitDataChange();
 		}
 		isDragging = false;
 		dragValues = [];
@@ -507,7 +519,7 @@
 		let newTree = removeNodes(treeData, vals);
 		newTree = insertAt(newTree, target.value, nodesToInsert, target.position);
 		treeData = newTree;
-		onDataChange?.(treeData.children ?? []);
+		emitDataChange();
 		if (target.position === 'inside' && !expandedValue.includes(target.value)) {
 			expandedValue = [...expandedValue, target.value];
 			onExpandedChange?.({ expandedValue });
@@ -570,7 +582,7 @@
 		if (!renamingValue) return;
 		if (renameText.trim()) {
 			treeData = renameNodeInTree(treeData, renamingValue, renameText.trim());
-			onDataChange?.(treeData.children ?? []);
+			emitDataChange();
 		}
 		renamingValue = null;
 		renameText = '';

@@ -65,6 +65,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         if: steps.tag_exists.outputs.exists == 'false'
@@ -80,6 +81,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Update npm
+        if: steps.tag_exists.outputs.exists == 'false'
+        run: npm install -g npm@latest
+
       - name: Publish to npm
         if: steps.tag_exists.outputs.exists == 'false'
-        run: pnpm publish --no-git-checks --provenance
+        run: npm publish --provenance
