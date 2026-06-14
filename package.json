@@ -1,6 +1,6 @@
 {
 	"name": "horizon-design",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/horizon-engine/horizon-design"
@@ -51,14 +51,14 @@
 		"@sveltejs/package": "^2.5.8",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@tailwindcss/vite": "^4.3.1",
-		"@types/node": "^22.19.21",
+		"@types/node": "^25.9.3",
 		"eslint": "^10.5.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.19.0",
 		"globals": "^17.6.0",
 		"prettier": "^3.8.4",
-		"prettier-plugin-svelte": "^3.5.2",
-		"prettier-plugin-tailwindcss": "^0.7.4",
+		"prettier-plugin-svelte": "^4.1.0",
+		"prettier-plugin-tailwindcss": "^0.8.0",
 		"publint": "^0.3.21",
 		"svelte": "^5.56.3",
 		"svelte-check": "^4.6.0",

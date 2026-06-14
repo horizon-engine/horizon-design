@@ -621,18 +621,6 @@
 	});
 
 	$effect(() => {
-		function onOutsidePointerDown(e: PointerEvent) {
-			if (!containerEl || containerEl.contains(e.target as Node)) return;
-			selectedValue = [];
-			pivot = null;
-			cursorValue = null;
-			onSelectionChange?.({ selectedValue: [] });
-		}
-		document.addEventListener('pointerdown', onOutsidePointerDown, true);
-		return () => document.removeEventListener('pointerdown', onOutsidePointerDown, true);
-	});
-
-	$effect(() => {
 		const el = containerEl;
 		if (!el) return;
 		const cancelIfNotDragging = () => {
