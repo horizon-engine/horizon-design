@@ -23,17 +23,18 @@
 	} as const;
 
 	const sizes = {
-		xs: 'h-6 gap-1.5 px-2 text-xs rounded-md [&_svg:not([class*="size-"])]:size-2.5',
-		sm: 'h-7 px-2.5 gap-1.5 rounded-md [&_svg:not([class*="size-"])]:size-3.5',
-		md: 'h-8 px-3 py-2 rounded-md',
-		lg: 'h-9 px-3.5 rounded-lg',
-		xl: 'h-10 text-base px-4 rounded-lg',
-		'icon-xs': 'size-6 rounded-md',
-		'icon-sm': 'size-7 rounded-md',
-		'icon-md': 'size-8 rounded-md',
-		'icon-lg': 'size-9 rounded-lg',
-		'icon-xl': 'size-10 rounded-lg [&_svg:not([class*="size-"])]:size-5'
-	} as const;
+		xs: 'inline-flex items-center justify-center h-6 gap-1.5 px-2 text-xs rounded-md [&_svg:not([class*="size-"])]:size-2.5',
+		sm: 'inline-flex items-center justify-center h-7 px-2.5 gap-1.5 rounded-md [&_svg:not([class*="size-"])]:size-3.5',
+		md: 'inline-flex items-center justify-center h-8 px-3 py-2 rounded-md',
+		lg: 'inline-flex items-center justify-center h-9 px-3.5 rounded-lg',
+		xl: 'inline-flex items-center justify-center h-10 text-base px-4 rounded-lg',
+		'icon-xs': 'inline-grid place-content-center size-6 rounded-md',
+		'icon-sm': 'inline-grid place-content-center size-7 rounded-md',
+		'icon-md': 'inline-grid place-content-center size-8 rounded-md',
+		'icon-lg': 'inline-grid place-content-center size-9 rounded-lg',
+		'icon-xl':
+			'inline-grid place-content-center size-10 rounded-lg [&_svg:not([class*="size-"])]:size-5'
+	};
 
 	type Variant = keyof typeof variants;
 	type Size = keyof typeof sizes;
@@ -51,7 +52,7 @@
 	}
 
 	const base =
-		'inline-grid shrink-0 place-content-center whitespace-nowrap font-medium text-sm transition-[background-color,border-color,color,opacity,transform,box-shadow] duration-200 ease-out outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-60 [&_svg:not([class*="size-"])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0';
+		'shrink-0 whitespace-nowrap font-medium text-sm transition-[background-color,border-color,color,opacity,transform,box-shadow] duration-200 ease-out outline-none focus-visible:ring-[3px] focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-60 [&_svg:not([class*="size-"])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0';
 
 	let {
 		variant = 'default',
@@ -85,7 +86,7 @@
 	disabled={isLoading || disabled}
 	{...rest}
 >
-	<span class="flex items-center justify-center gap-2">
+	<span class="flex items-center justify-center gap-2 w-full">
 		{#if isLoading}
 			<Spinner aria-hidden="true" />
 		{/if}
