@@ -88,5 +88,6 @@ export * from './components/circular-slider';
 export * from './components/calendar';
 export * from './components/tour';
 export * from './components/theme-switch';
+export * from './components/inspector-panel';
 export * from './components/horizon-layout';
 export { createMonacoTheme } from './monaco-theme';

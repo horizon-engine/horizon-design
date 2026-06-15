@@ -34,7 +34,7 @@
 	{#each items as item (item.value)}
 		<ToggleGroup.Item
 			value={item.value}
-			class="text-muted-foreground hover:text-foreground data-[state=on]:bg-background data-[state=on]:text-foreground inline-flex h-7 items-center justify-center rounded-md px-3 text-sm font-medium transition-colors data-[state=on]:shadow-sm"
+			class="text-muted-foreground hover:text-foreground data-[state=on]:bg-background data-[state=on]:text-foreground data-[state=on]:border-border inline-flex h-7 items-center justify-center rounded-md border border-transparent px-3 text-sm font-medium transition-colors data-[state=on]:shadow-sm"
 			data-slot="toggle-group-item"
 		>
 			{@render item.content()}

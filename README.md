@@ -2286,6 +2286,45 @@ All nodes default to `mingcute:file-line`. Supply an `icon` snippet to different
 
 ---
 
+### InspectorPanel
+
+An accordion-style panel of cards with drag-to-reorder and full keyboard navigation. Each card has a title, an optional subtitle, and collapsible content rendered via a `content` snippet.
+
+```svelte
+<script>
+	import { InspectorPanel } from 'horizon-design';
+
+	let cards = $state([
+		{ id: 'fill', title: 'Fill', subtitle: 'Solid' },
+		{ id: 'stroke', title: 'Stroke', subtitle: '2px' },
+		{ id: 'shadow', title: 'Shadow' }
+	]);
+
+	let expandedIds = $state(['fill']);
+</script>
+
+<InspectorPanel bind:cards bind:expandedIds>
+	{#snippet content(card)}
+		<p>Content for {card.title}</p>
+	{/snippet}
+</InspectorPanel>
+```
+
+| Prop               | Type                               | Default | Description                                |
+| ------------------ | ---------------------------------- | ------- | ------------------------------------------ |
+| `cards`            | `InspectorCard[]`                  | `[]`    | List of cards (bindable)                   |
+| `expandedIds`      | `string[]`                         | `[]`    | IDs of currently expanded cards (bindable) |
+| `content`          | `Snippet<[InspectorCard]>`         | —       | Snippet rendered inside each card body     |
+| `onCardsChange`    | `(cards: InspectorCard[]) => void` | —       | Fired when card order changes              |
+| `onExpandedChange` | `(ids: string[]) => void`          | —       | Fired when expanded state changes          |
+| `class`            | `string`                           | `''`    | Extra classes on the root element          |
+
+`InspectorCard` requires an `id: string` and `title: string`; any additional properties are passed through to the `content` snippet.
+
+**Keyboard navigation** (focus the panel first): `↑`/`↓` move the cursor, `Enter`/`Space` toggle expansion, `Shift+↑`/`Shift+↓` reorder, `Home`/`End` jump to first/last, `Escape` clears the cursor. `Tab` moves focus into the expanded card's content (inputs, buttons, etc.); `Escape` from inside card content returns focus to the panel.
+
+---
+
 ### HorizonLayout
 
 A resizable, drag-to-reorder tabbed layout engine. Wrapper around [horizon-layout](https://github.com/horizon-engine/horizon-layout).
