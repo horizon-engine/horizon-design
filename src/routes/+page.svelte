@@ -1479,27 +1479,57 @@
 					<p class="section-tag">Display</p>
 					<h2 class="mb-6 text-2xl font-bold">Scroll Area</h2>
 					<Card class="card-lift">
-						<div>
-							<ScrollArea class="border-border h-52 rounded-lg border p-4">
-								<div class="space-y-3">
-									{#each scrollItems as item (item.id)}
-										<div
-											class="hover:bg-accent-hover group flex items-center gap-3 rounded-lg px-2 py-1.5 transition-colors"
-										>
+						<div class="grid gap-4 sm:grid-cols-2">
+							<div class="space-y-2">
+								<p class="text-muted-foreground text-xs font-semibold tracking-widest uppercase">
+									Overflowing — scrollbar visible
+								</p>
+								<ScrollArea class="border-border h-52 rounded-lg border p-4">
+									<div class="space-y-3">
+										{#each scrollItems as item (item.id)}
 											<div
-												class="bg-primary-subtle-bg text-primary group-hover:bg-primary-glow flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors"
+												class="hover:bg-accent-hover group flex items-center gap-3 rounded-lg px-2 py-1.5 transition-colors"
 											>
-												{item.id}
+												<div
+													class="bg-primary-subtle-bg text-primary group-hover:bg-primary-glow flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors"
+												>
+													{item.id}
+												</div>
+												<p
+													class="text-muted-foreground group-hover:text-foreground text-sm transition-colors"
+												>
+													{item.text}
+												</p>
 											</div>
-											<p
-												class="text-muted-foreground group-hover:text-foreground text-sm transition-colors"
+										{/each}
+									</div>
+								</ScrollArea>
+							</div>
+							<div class="space-y-2">
+								<p class="text-muted-foreground text-xs font-semibold tracking-widest uppercase">
+									Fits — no scrollbar
+								</p>
+								<ScrollArea class="border-border h-52 rounded-lg border p-4">
+									<div class="space-y-3">
+										{#each scrollItems.slice(0, 2) as item (item.id)}
+											<div
+												class="hover:bg-accent-hover group flex items-center gap-3 rounded-lg px-2 py-1.5 transition-colors"
 											>
-												{item.text}
-											</p>
-										</div>
-									{/each}
-								</div>
-							</ScrollArea>
+												<div
+													class="bg-primary-subtle-bg text-primary group-hover:bg-primary-glow flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors"
+												>
+													{item.id}
+												</div>
+												<p
+													class="text-muted-foreground group-hover:text-foreground text-sm transition-colors"
+												>
+													{item.text}
+												</p>
+											</div>
+										{/each}
+									</div>
+								</ScrollArea>
+							</div>
 						</div>
 					</Card>
 				</section>

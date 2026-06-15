@@ -20,16 +20,16 @@
 	{...rest}
 >
 	<ScrollArea.Viewport
-		class="size-full [scrollbar-width:none] rounded-[inherit] [&::-webkit-scrollbar]:hidden"
+		class="size-full scrollbar-none rounded-[inherit] [&::-webkit-scrollbar]:hidden"
 	>
 		{@render children?.()}
 	</ScrollArea.Viewport>
 	<ScrollArea.Scrollbar
 		orientation="vertical"
-		class="group/scrollbar flex w-2.5 touch-none border-l border-l-transparent p-px transition-colors select-none"
+		class="group/scrollbar hidden data-overflow-y:flex w-2.5 touch-none border-l border-l-transparent p-px transition-colors select-none"
 	>
 		<ScrollArea.Thumb
-			class="bg-border hover:bg-scroll-thumb group-data-[scrolling]/scrollbar:bg-scroll-thumb-hover group-data-[dragging]/scrollbar:bg-scroll-thumb-active relative flex-1 rounded-full transition-colors"
+			class="bg-border hover:bg-scroll-thumb group-data-scrolling/scrollbar:bg-scroll-thumb-hover group-data-dragging/scrollbar:bg-scroll-thumb-active relative flex-1 rounded-full transition-colors"
 		/>
 	</ScrollArea.Scrollbar>
 	<ScrollArea.Corner />
