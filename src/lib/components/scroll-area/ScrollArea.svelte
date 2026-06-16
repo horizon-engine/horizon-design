@@ -5,10 +5,12 @@
 
 	let {
 		class: className = '',
+		innerClass = '',
 		children,
 		...rest
 	}: {
 		class?: string;
+		innerClass?: string;
 		children?: Snippet;
 		[key: string]: unknown;
 	} = $props();
@@ -41,7 +43,7 @@
 	<ScrollArea.Viewport
 		class="size-full scrollbar-none rounded-[inherit] [&::-webkit-scrollbar]:hidden"
 	>
-		<div bind:this={contentEl}>
+		<div class={cn('size-full', innerClass)} bind:this={contentEl}>
 			{@render children?.()}
 		</div>
 	</ScrollArea.Viewport>
