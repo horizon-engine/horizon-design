@@ -13,9 +13,24 @@
 		[key: string]: unknown;
 	} = $props();
 
-	let viewportHeight = $state(0);
-	let contentHeight = $state(0);
-	let hasOverflow = $derived(contentHeight > viewportHeight);
+	let contentEl = $state<HTMLElement | null>(null);
+	let hasOverflow = $state(false);
+
+	$effect(() => {
+		if (!contentEl) return;
+		const viewport = contentEl.parentElement as HTMLElement;
+
+		const check = () => {
+			hasOverflow = contentEl!.offsetHeight > viewport.clientHeight;
+		};
+
+		const ro = new ResizeObserver(check);
+		ro.observe(contentEl);
+		ro.observe(viewport);
+		check();
+
+		return () => ro.disconnect();
+	});
 </script>
 
 <ScrollArea.Root
@@ -23,15 +38,13 @@
 	data-slot="scroll-area"
 	{...rest}
 >
-	<div bind:clientHeight={viewportHeight} class="size-full">
-		<ScrollArea.Viewport
-			class="size-full scrollbar-none rounded-[inherit] [&::-webkit-scrollbar]:hidden"
-		>
-			<div bind:offsetHeight={contentHeight}>
-				{@render children?.()}
-			</div>
-		</ScrollArea.Viewport>
-	</div>
+	<ScrollArea.Viewport
+		class="size-full scrollbar-none rounded-[inherit] [&::-webkit-scrollbar]:hidden"
+	>
+		<div bind:this={contentEl}>
+			{@render children?.()}
+		</div>
+	</ScrollArea.Viewport>
 	<ScrollArea.Scrollbar
 		orientation="vertical"
 		class={cn(

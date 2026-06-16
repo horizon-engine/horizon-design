@@ -236,17 +236,28 @@
 					style="bottom: -2.5px"
 				></div>
 			{/if}
-			<!-- Header -->
-			<div class="hover:bg-muted/50 flex items-center rounded-sm px-2 py-1.5 transition-colors">
+			<div
+				role="button"
+				tabindex="0"
+				class="hover:bg-muted/50 flex cursor-default items-center rounded-sm px-2 py-1.5 transition-colors"
+				onclick={() => {
+					cursorId = card.id;
+					isKeyboardMode = false;
+					toggleExpanded(card.id);
+				}}
+				onkeydown={(e) => {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						cursorId = card.id;
+						isKeyboardMode = true;
+						toggleExpanded(card.id);
+					}
+				}}
+			>
 				<button
 					tabindex="-1"
 					aria-expanded={isExpanded}
-					class="flex flex-1 cursor-default items-center gap-1.5 text-left"
-					onclick={() => {
-						cursorId = card.id;
-						isKeyboardMode = false;
-						toggleExpanded(card.id);
-					}}
+					class="flex flex-1 items-center gap-1.5 text-left"
 				>
 					<MingcuteRightLine
 						class={cn(
@@ -277,7 +288,6 @@
 				</button>
 			</div>
 
-			<!-- Content -->
 			<div
 				class={cn(
 					'grid transition-[grid-template-rows] duration-200 ease-out',
