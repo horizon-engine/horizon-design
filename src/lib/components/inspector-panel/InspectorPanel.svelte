@@ -165,6 +165,20 @@
 			document.body.style.cursor = '';
 		};
 	});
+
+	$effect(() => {
+		const ids = new Set(cards.map((c) => c.id));
+
+		const prunedExpanded = expandedIds.filter((id) => ids.has(id));
+		if (prunedExpanded.length !== expandedIds.length) {
+			expandedIds = prunedExpanded;
+			onExpandedChange?.(prunedExpanded);
+		}
+
+		if (cursorId && !ids.has(cursorId)) {
+			cursorId = null;
+		}
+	});
 </script>
 
 {#if isDragging}
