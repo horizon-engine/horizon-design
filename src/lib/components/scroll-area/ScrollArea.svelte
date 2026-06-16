@@ -12,6 +12,10 @@
 		children?: Snippet;
 		[key: string]: unknown;
 	} = $props();
+
+	let viewportHeight = $state(0);
+	let contentHeight = $state(0);
+	let hasOverflow = $derived(contentHeight > viewportHeight);
 </script>
 
 <ScrollArea.Root
@@ -19,14 +23,21 @@
 	data-slot="scroll-area"
 	{...rest}
 >
-	<ScrollArea.Viewport
-		class="size-full scrollbar-none rounded-[inherit] [&::-webkit-scrollbar]:hidden"
-	>
-		{@render children?.()}
-	</ScrollArea.Viewport>
+	<div bind:clientHeight={viewportHeight} class="size-full">
+		<ScrollArea.Viewport
+			class="size-full scrollbar-none rounded-[inherit] [&::-webkit-scrollbar]:hidden"
+		>
+			<div bind:offsetHeight={contentHeight}>
+				{@render children?.()}
+			</div>
+		</ScrollArea.Viewport>
+	</div>
 	<ScrollArea.Scrollbar
 		orientation="vertical"
-		class="group/scrollbar hidden data-overflow-y:flex w-2.5 touch-none border-l border-l-transparent p-px transition-colors select-none"
+		class={cn(
+			'group/scrollbar w-2.5 touch-none border-l border-l-transparent p-px transition-colors select-none',
+			hasOverflow ? 'flex' : 'hidden'
+		)}
 	>
 		<ScrollArea.Thumb
 			class="bg-border hover:bg-scroll-thumb group-data-scrolling/scrollbar:bg-scroll-thumb-hover group-data-dragging/scrollbar:bg-scroll-thumb-active relative flex-1 rounded-full transition-colors"

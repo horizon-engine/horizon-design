@@ -1532,6 +1532,38 @@
 							</div>
 						</div>
 					</Card>
+					<Card class="card-lift mt-4">
+						<div class="space-y-2">
+							<p class="text-muted-foreground text-xs font-semibold tracking-widest uppercase">
+								Resizable — drag the corner
+							</p>
+							<div
+								class="border-border min-h-24 w-full resize-y overflow-hidden rounded-lg border"
+								style="height: 80px;"
+							>
+								<ScrollArea class="size-full p-4">
+									<div class="space-y-3">
+										{#each scrollItems.slice(0, 6) as item (item.id)}
+											<div
+												class="hover:bg-accent-hover group flex items-center gap-3 rounded-lg px-2 py-1.5 transition-colors"
+											>
+												<div
+													class="bg-primary-subtle-bg text-primary group-hover:bg-primary-glow flex size-8 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors"
+												>
+													{item.id}
+												</div>
+												<p
+													class="text-muted-foreground group-hover:text-foreground text-sm transition-colors"
+												>
+													{item.text}
+												</p>
+											</div>
+										{/each}
+									</div>
+								</ScrollArea>
+							</div>
+						</div>
+					</Card>
 				</section>
 
 				<!-- ─── Alert ─── -->
