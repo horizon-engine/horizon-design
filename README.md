@@ -559,19 +559,25 @@ Full-featured HSLA color picker with hex input and swatches.
 
 ```svelte
 <script>
-	import { ColorPicker } from 'horizon-design';
+	import { ColorPicker, parseColor } from 'horizon-design';
 
-	let color = $state('#737efa');
+	let color = $state(parseColor('#737efa'));
 </script>
 
 <ColorPicker label="Brand color" bind:value={color} />
 ```
 
-| Prop           | Type     | Default |
-| -------------- | -------- | ------- |
-| `label`        | `string` | —       |
-| `defaultValue` | `string` | —       |
-| `value`        | `string` | —       |
+| Prop    | Type     | Default |
+| ------- | -------- | ------- |
+| `label` | `string` | —       |
+| `value` | `Color`  | —       |
+
+`Color` is a type exported from `horizon-design` representing a parsed color object. `parseColor` accepts any of the following string formats:
+
+- Hex: `#RGB`, `#RGBA`, `#RRGGBB`, `#RRGGBBAA`
+- RGB: `rgb(r, g, b)`, `rgba(r, g, b, a)`
+- HSL: `hsl(h, s%, l%)`, `hsla(h, s%, l%, a)`
+- HSB: `hsb(h, s%, b%)`, `hsba(h, s%, b%, a)`
 
 ---
 

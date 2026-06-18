@@ -1,32 +1,26 @@
 <script lang="ts">
-	import { ColorPicker, parseColor } from '@ark-ui/svelte';
+	import { ColorPicker, type ColorPickerColor as Color } from '@ark-ui/svelte';
 	import { cn } from '$lib/utils';
+	import { untrack } from 'svelte';
 
 	let {
 		class: className = '',
 		label = '',
-		defaultValue,
 		value = $bindable(undefined),
 		...rest
 	}: {
 		class?: string;
 		label?: string;
-		defaultValue?: string | ReturnType<typeof parseColor>;
-		value?: string | ReturnType<typeof parseColor>;
+		value?: Color;
 		[key: string]: unknown;
 	} = $props();
-
-	const parsedDefaultValue = $derived(
-		typeof defaultValue === 'string' ? parseColor(defaultValue) : defaultValue
-	);
-	const parsedValue = $derived(typeof value === 'string' ? parseColor(value) : value);
 </script>
 
 <ColorPicker.Root
 	class={cn('flex flex-col gap-1.5', className)}
 	data-slot="color-picker"
-	defaultValue={parsedDefaultValue}
-	value={parsedValue}
+	defaultValue={untrack(() => value)}
+	{value}
 	onValueChange={(details) => (value = details.value)}
 	{...rest}
 >

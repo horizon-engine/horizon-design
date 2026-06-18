@@ -16,7 +16,7 @@
 	import { CircularProgress } from '$lib/components/circular-progress';
 	import { Clipboard } from '$lib/components/clipboard';
 	import { Collapsible } from '$lib/components/collapsible';
-	import { ColorPicker } from '$lib/components/color-picker';
+	import { ColorPicker, parseColor } from '$lib/components/color-picker';
 	import { Combobox } from '$lib/components/combobox';
 	import { ContextMenu } from '$lib/components/context-menu';
 	import { DataList } from '$lib/components/data-list';
@@ -2435,7 +2435,7 @@
 					<h2 class="mb-6 text-2xl font-bold">Color Picker</h2>
 					<Card class="card-lift">
 						<div>
-							<ColorPicker label="Brand color" defaultValue="#737efa" />
+							<ColorPicker label="Brand color" value={parseColor('#737efa')} />
 						</div>
 					</Card>
 				</section>
