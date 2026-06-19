@@ -23,7 +23,7 @@
 </script>
 
 <Menu.Root {...rest}>
-	<Menu.ContextTrigger data-slot="context-menu-trigger">
+	<Menu.ContextTrigger class="contents" data-slot="context-menu-trigger">
 		{@render children?.()}
 	</Menu.ContextTrigger>
 	<Portal>
