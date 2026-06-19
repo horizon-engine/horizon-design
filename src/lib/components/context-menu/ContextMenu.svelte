@@ -23,12 +23,12 @@
 </script>
 
 <Menu.Root {...rest}>
-	<Menu.ContextTrigger
-		{...{ as: 'div' } as object}
-		class="contents"
-		data-slot="context-menu-trigger"
-	>
-		{@render children?.()}
+	<Menu.ContextTrigger data-slot="context-menu-trigger">
+		{#snippet asChild(getProps)}
+			<div {...getProps()} class="contents">
+				{@render children?.()}
+			</div>
+		{/snippet}
 	</Menu.ContextTrigger>
 	<Portal>
 		<Menu.Positioner class="z-50">
