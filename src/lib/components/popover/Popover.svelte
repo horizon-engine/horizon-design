@@ -29,8 +29,12 @@
 
 <Popover.Root {open} onOpenChange={(details) => (open = details.open)} {...rest}>
 	{#if trigger}
-		<Popover.Trigger class={triggerClass || undefined} data-slot="popover-trigger">
-			{@render trigger()}
+		<Popover.Trigger data-slot="popover-trigger">
+			{#snippet asChild(getProps)}
+				<div {...getProps()} class={triggerClass || 'contents'}>
+					{@render trigger()}
+				</div>
+			{/snippet}
 		</Popover.Trigger>
 	{/if}
 	<Portal>

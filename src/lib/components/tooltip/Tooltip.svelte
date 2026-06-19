@@ -6,6 +6,7 @@
 
 	let {
 		children,
+		trigger,
 		triggerClass = '',
 		content,
 		contentClass = '',
@@ -14,6 +15,7 @@
 		...rest
 	}: {
 		children?: Snippet;
+		trigger?: Snippet;
 		triggerClass?: string;
 		content?: string | Snippet;
 		contentClass?: string;
@@ -24,8 +26,12 @@
 </script>
 
 <Tooltip.Root {openDelay} {closeDelay} positioning={{ placement: 'top' }} {...rest}>
-	<Tooltip.Trigger class={triggerClass || undefined} data-slot="tooltip-trigger">
-		{@render children?.()}
+	<Tooltip.Trigger data-slot="tooltip-trigger">
+		{#snippet asChild(getProps)}
+			<div {...getProps()} class={triggerClass || 'contents'}>
+				{@render (trigger ?? children)?.()}
+			</div>
+		{/snippet}
 	</Tooltip.Trigger>
 	<Portal>
 		<Tooltip.Positioner class="z-50">

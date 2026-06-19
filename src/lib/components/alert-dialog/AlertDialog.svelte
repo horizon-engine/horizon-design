@@ -29,8 +29,12 @@
 </script>
 
 <Dialog.Root closeOnInteractOutside={false} {...rest}>
-	<Dialog.Trigger class={cn(triggerClass)} data-slot="alert-dialog-trigger">
-		{@render trigger?.()}
+	<Dialog.Trigger data-slot="alert-dialog-trigger">
+		{#snippet asChild(getProps)}
+			<div {...getProps()} class={cn(triggerClass) || 'contents'}>
+				{@render trigger?.()}
+			</div>
+		{/snippet}
 	</Dialog.Trigger>
 	<Dialog.Backdrop
 		class="data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out bg-overlay-bg fixed inset-0 z-60 backdrop-blur-sm"

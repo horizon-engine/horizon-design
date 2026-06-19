@@ -32,8 +32,12 @@
 
 <Dialog.Root {open} onOpenChange={(details) => (open = details.open)} {...rest}>
 	{#if trigger}
-		<Dialog.Trigger class={triggerClass || undefined} data-slot="dialog-trigger">
-			{@render trigger()}
+		<Dialog.Trigger data-slot="dialog-trigger">
+			{#snippet asChild(getProps)}
+				<div {...getProps()} class={triggerClass || 'contents'}>
+					{@render trigger()}
+				</div>
+			{/snippet}
 		</Dialog.Trigger>
 	{/if}
 	<Portal>
