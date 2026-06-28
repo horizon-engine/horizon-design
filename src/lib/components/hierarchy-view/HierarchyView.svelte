@@ -661,7 +661,7 @@
 	role="tree"
 	tabindex="0"
 	data-slot="hierarchy-view"
-	class={cn('flex size-full flex-col text-sm outline-none select-none', className)}
+	class={cn('flex size-full flex-col overflow-y-auto text-sm outline-none select-none', className)}
 	ondragstart={(e) => e.preventDefault()}
 	onkeydown={handleKeyDown}
 	onfocus={() => {
