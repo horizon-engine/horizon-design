@@ -38,10 +38,10 @@
 		</Popover.Trigger>
 	{/if}
 	<Portal>
-		<Popover.Positioner class="z-50">
+		<Popover.Positioner>
 			<Popover.Content
 				class={cn(
-					'data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out border-border text-popover-foreground bg-popover w-72 rounded-xl border shadow-xl backdrop-blur-xl outline-none',
+					'z-50 data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out border-border text-popover-foreground bg-popover w-72 rounded-xl border shadow-xl backdrop-blur-xl outline-none',
 					contentClass
 				)}
 				data-slot="popover-content"
