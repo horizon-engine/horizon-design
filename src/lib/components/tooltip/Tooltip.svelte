@@ -34,10 +34,10 @@
 		{/snippet}
 	</Tooltip.Trigger>
 	<Portal>
-		<Tooltip.Positioner class="z-50">
+		<Tooltip.Positioner>
 			<Tooltip.Content
 				class={cn(
-					'animate-fade-in border-border bg-popover text-popover-foreground rounded-lg border px-3 py-1.5 text-xs shadow-xl backdrop-blur-xl',
+					'z-50 animate-fade-in border-border bg-popover text-popover-foreground rounded-lg border px-3 py-1.5 text-xs shadow-xl backdrop-blur-xl',
 					contentClass
 				)}
 				data-slot="tooltip-content"

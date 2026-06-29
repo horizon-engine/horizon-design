@@ -47,9 +47,9 @@
 		</Combobox.Trigger>
 	</Combobox.Control>
 	<Portal>
-		<Combobox.Positioner class="z-50">
+		<Combobox.Positioner>
 			<Combobox.Content
-				class="data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out border-border bg-popover text-popover-foreground min-w-32 overflow-hidden rounded-xl border p-1 shadow-xl backdrop-blur-xl outline-none"
+				class="z-50 data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out border-border bg-popover text-popover-foreground min-w-32 overflow-hidden rounded-xl border p-1 shadow-xl backdrop-blur-xl outline-none"
 				data-slot="combobox-content"
 			>
 				<Combobox.Empty class="text-muted-foreground px-2.5 py-4 text-center text-sm">

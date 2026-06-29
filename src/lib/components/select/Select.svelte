@@ -55,10 +55,10 @@
 		</Select.Trigger>
 	</Select.Control>
 	<Portal>
-		<Select.Positioner class="z-50">
+		<Select.Positioner>
 			<Select.Content
 				class={cn(
-					'data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out border-border text-popover-foreground bg-popover min-w-(--reference-width) rounded-xl border p-1 shadow-xl backdrop-blur-xl outline-none',
+					'z-50 data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out border-border text-popover-foreground bg-popover min-w-(--reference-width) rounded-xl border p-1 shadow-xl backdrop-blur-xl outline-none',
 					contentClass
 				)}
 				data-slot="select-content"

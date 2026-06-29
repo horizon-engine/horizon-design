@@ -31,9 +31,9 @@
 		{/snippet}
 	</Menu.ContextTrigger>
 	<Portal>
-		<Menu.Positioner class="z-50">
+		<Menu.Positioner>
 			<Menu.Content
-				class="data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out border-border bg-popover text-popover-foreground min-w-36 overflow-hidden rounded-xl border p-1 shadow-xl backdrop-blur-xl outline-none"
+				class="z-50 data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out border-border bg-popover text-popover-foreground min-w-36 overflow-hidden rounded-xl border p-1 shadow-xl backdrop-blur-xl outline-none"
 				data-slot="context-menu-content"
 			>
 				{#each items as item, i (i)}

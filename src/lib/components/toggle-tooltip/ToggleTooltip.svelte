@@ -29,9 +29,9 @@
 		{@render children?.()}
 	</Tooltip.Trigger>
 	{#if label}
-		<Tooltip.Positioner class="z-50">
+		<Tooltip.Positioner>
 			<Tooltip.Content
-				class="data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out border-border bg-popover text-popover-foreground rounded-md border px-2.5 py-1 text-xs font-medium shadow-md backdrop-blur-xl"
+				class="z-50 data-[state=open]:animate-zoom-in data-[state=closed]:animate-zoom-out border-border bg-popover text-popover-foreground rounded-md border px-2.5 py-1 text-xs font-medium shadow-md backdrop-blur-xl"
 			>
 				{label}
 			</Tooltip.Content>
