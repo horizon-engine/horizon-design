@@ -36,11 +36,8 @@
 	--color-destructive: var(--destructive);
 	--color-destructive-foreground: var(--destructive-foreground);
 	--color-success: var(--success);
-	--color-success-foreground: var(--success-foreground);
 	--color-warning: var(--warning);
-	--color-warning-foreground: var(--warning-foreground);
 	--color-info: var(--info);
-	--color-info-foreground: var(--info-foreground);
 	--color-border: var(--border);
 	--color-input: var(--input);
 	--color-ring: var(--ring);
@@ -48,27 +45,7 @@
 	--color-switch-thumb: var(--switch-thumb);
 	--color-primary-hover: var(--primary-hover);
 	--color-primary-glow: var(--primary-glow);
-	--color-primary-glow-soft: var(--primary-glow-soft);
 	--color-selection-bg: var(--selection-bg);
-	--color-glass-highlight: var(--glass-highlight);
-	--color-glass-shadow-inset: var(--glass-shadow-inset);
-	--color-glass-highlight-strong: var(--glass-highlight-strong);
-	--color-glass-shadow-strong: var(--glass-shadow-strong);
-
-	/* Shadow color tokens */
-	--color-shadow-xs: var(--shadow-color-xs);
-	--color-shadow-sm: var(--shadow-color-sm);
-	--color-shadow-md: var(--shadow-color-md);
-	--color-shadow-lg: var(--shadow-color-lg);
-	--color-shadow-xl: var(--shadow-color-xl);
-	--color-shadow-heavy: var(--shadow-color-heavy);
-	--color-cropper-overlay: var(--cropper-overlay);
-
-	/* Glow color tokens */
-	--color-success-glow: var(--success-glow);
-	--color-warning-glow: var(--warning-glow);
-	--color-info-glow: var(--info-glow);
-	--color-destructive-glow: var(--destructive-glow);
 
 	/* Focus ring color tokens */
 	--color-ring-focus: var(--ring-focus);
@@ -116,7 +93,6 @@
 	--color-muted-surface-active: var(--muted-surface-active);
 
 	/* Foreground alpha tokens */
-	--color-foreground-soft: var(--foreground-soft);
 	--color-foreground-dim: var(--foreground-dim);
 	--color-muted-foreground-dim: var(--muted-foreground-dim);
 
@@ -142,45 +118,18 @@
 	--color-image-cropper-border-active: var(--image-cropper-border-active);
 	--color-image-cropper-grid: var(--image-cropper-grid);
 
-	/* Layout tokens */
-	--color-tab-inactive: var(--tab-inactive-color);
-	--color-tab-hover-bg: var(--tab-hover-bg);
-	--color-drop-hint-border: var(--drop-hint-border);
-	--color-drop-hint-bg: var(--drop-hint-bg);
-
 	--color-white: white;
-	--color-black: black;
 	--color-transparent: transparent;
 
 	/* Named shadow patterns */
 	--shadow-glass: inset 0 1px 0 var(--glass-highlight), inset 0 -1px 0 var(--glass-shadow-inset);
-	--shadow-glass-strong:
-		inset 0 1px 0 var(--glass-highlight-strong), inset 0 -1px 0 var(--glass-shadow-strong);
 	--shadow-badge-primary:
 		inset 0 1px 0 var(--glass-highlight-strong), inset 0 -1px 0 var(--glass-shadow-strong),
 		0 0 10px var(--primary-glow-soft);
-	--shadow-button-primary:
-		inset 0 1px 0 var(--glass-highlight), inset 0 -1px 0 var(--glass-shadow-inset),
-		0 0 12px var(--primary-glow);
-	--shadow-button-success:
-		inset 0 1px 0 var(--glass-highlight), inset 0 -1px 0 var(--glass-shadow-inset),
-		0 0 12px var(--success-glow);
-	--shadow-button-warning:
-		inset 0 1px 0 var(--glass-highlight), inset 0 -1px 0 var(--glass-shadow-inset),
-		0 0 12px var(--warning-glow);
-	--shadow-button-info:
-		inset 0 1px 0 var(--glass-highlight), inset 0 -1px 0 var(--glass-shadow-inset),
-		0 0 12px var(--info-glow);
-	--shadow-button-destructive:
-		inset 0 1px 0 var(--glass-highlight), inset 0 -1px 0 var(--glass-shadow-inset),
-		0 0 12px var(--destructive-glow);
 	--shadow-toast:
 		0 20px 25px -5px var(--shadow-color-md), 0 8px 10px -6px var(--shadow-color-sm),
 		inset 0 1px 0 var(--glass-highlight), inset 0 -1px 0 var(--glass-shadow-inset);
 	--shadow-glow-primary: 0 0 12px var(--primary-glow);
-	--shadow-glow-success: 0 0 12px var(--success-glow);
-	--shadow-glow-warning: 0 0 12px var(--warning-glow);
-	--shadow-glow-info: 0 0 12px var(--info-glow);
 	--shadow-pulse-success: 0 0 6px var(--success);
 	--shadow-pulse-warning: 0 0 6px var(--warning);
 	--shadow-pulse-destructive: 0 0 6px var(--destructive);
@@ -191,7 +140,6 @@
 	--radius-md: var(--radius);
 	--radius-lg: calc(var(--radius) + 0.25rem);
 	--radius-xl: calc(var(--radius) + 0.5rem);
-	--radius-2xl: calc(var(--radius) + 1rem);
 	--radius-full: 9999px;
 
 	--animate-slide-down: slide-down 0.2s ease-out;
@@ -350,16 +298,6 @@
 		}
 	}
 
-	--animate-float: float 5s ease-in-out infinite;
-	--animate-float-slow: float 8s ease-in-out infinite 2s;
-	--animate-ping-slow: ping-slow 2.5s ease-out infinite;
-	--animate-breathe: breathe 3s ease-in-out infinite;
-	--animate-fade-up: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-	--animate-scale-in: scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
-	--animate-spin-slow: spin 3s linear infinite;
-	--animate-swap-in: swap-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
-	--animate-swap-out: swap-out 0.15s ease-in both;
-
 	@keyframes swap-in {
 		from {
 			opacity: 0;
@@ -378,54 +316,6 @@
 		to {
 			opacity: 0;
 			transform: rotate(45deg) scale(0.6);
-		}
-	}
-
-	@keyframes float {
-		0%,
-		100% {
-			transform: translateY(0);
-		}
-		50% {
-			transform: translateY(-12px);
-		}
-	}
-	@keyframes ping-slow {
-		75%,
-		100% {
-			transform: scale(2.5);
-			opacity: 0;
-		}
-	}
-	@keyframes breathe {
-		0%,
-		100% {
-			transform: scale(1);
-			opacity: 0.7;
-		}
-		50% {
-			transform: scale(1.1);
-			opacity: 1;
-		}
-	}
-	@keyframes fade-up {
-		from {
-			opacity: 0;
-			transform: translateY(20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-	@keyframes scale-in {
-		from {
-			opacity: 0;
-			transform: scale(0.92);
-		}
-		to {
-			opacity: 1;
-			transform: scale(1);
 		}
 	}
 }
@@ -448,11 +338,8 @@
 	--destructive: oklch(0.6 0.22 25);
 	--destructive-foreground: white;
 	--success: oklch(0.65 0.18 142);
-	--success-foreground: white;
 	--warning: oklch(0.83 0.18 85);
-	--warning-foreground: oklch(0.13 0.02 264);
 	--info: oklch(0.69 0.12 220);
-	--info-foreground: white;
 	--border: oklch(0.28 0.05 266 / 0.55);
 	--input: oklch(0.19 0.02 264 / 0.55);
 	--ring: oklch(0.65 0.18 277 / 0.55);
@@ -468,17 +355,12 @@
 	--glass-highlight-strong: oklch(1 0 0 / 0.15);
 	--glass-shadow-strong: oklch(0 0 0 / 0.1);
 	--glass-blur: 14px;
-	--shadow-color-xs: oklch(0 0 0 / 0.05);
 	--shadow-color-sm: oklch(0 0 0 / 0.1);
 	--shadow-color-md: oklch(0 0 0 / 0.15);
 	--shadow-color-lg: oklch(0 0 0 / 0.18);
 	--shadow-color-xl: oklch(0 0 0 / 0.2);
 	--shadow-color-heavy: oklch(0 0 0 / 0.3);
 	--cropper-overlay: oklch(0 0 0 / 0.5);
-	--success-glow: oklch(from var(--success) l c h / 0.25);
-	--warning-glow: oklch(from var(--warning) l c h / 0.25);
-	--info-glow: oklch(from var(--info) l c h / 0.25);
-	--destructive-glow: oklch(from var(--destructive) l c h / 0.25);
 	--ring-focus: oklch(from var(--ring) l c h / 0.32);
 	--success-ring: oklch(from var(--success) l c h / 0.4);
 	--warning-ring: oklch(from var(--warning) l c h / 0.4);
@@ -512,7 +394,6 @@
 	--muted-surface: oklch(from var(--muted) l c h / 0.3);
 	--muted-surface-hover: oklch(from var(--muted) l c h / 0.5);
 	--muted-surface-active: oklch(from var(--muted) l c h / 0.7);
-	--foreground-soft: oklch(from var(--foreground) l c h / 0.8);
 	--foreground-dim: oklch(from var(--foreground) l c h / 0.35);
 	--muted-foreground-dim: oklch(from var(--muted-foreground) l c h / 0.64);
 	--scroll-thumb: oklch(from var(--foreground) l c h / 0.25);
@@ -530,7 +411,6 @@
 	--image-cropper-border-active: oklch(1 0 0 / 0.84);
 	--image-cropper-grid: oklch(1 0 0 / 0.4);
 	--tab-inactive-color: color-mix(in oklch, var(--muted-foreground) 65%, transparent);
-	--tab-hover-bg: color-mix(in oklch, var(--card) 60%, transparent);
 	--drop-hint-border: color-mix(in oklch, var(--primary) 80%, transparent);
 	--drop-hint-bg: color-mix(in oklch, var(--primary) 12%, transparent);
 }
@@ -553,11 +433,8 @@
 	--destructive: oklch(0.6 0.22 25);
 	--destructive-foreground: white;
 	--success: oklch(0.65 0.18 142);
-	--success-foreground: white;
 	--warning: oklch(0.83 0.18 85);
-	--warning-foreground: oklch(0.13 0.02 264);
 	--info: oklch(0.69 0.12 220);
-	--info-foreground: white;
 	--border: oklch(0.82 0.02 264 / 0.65);
 	--input: oklch(0.9 0.02 264 / 0.65);
 	--ring: oklch(0.55 0.18 277 / 0.55);
