@@ -28,7 +28,7 @@
 
 	const variants: Record<string, string> = {
 		default: 'bg-muted border-border',
-		info: 'bg-info-subtle-bg border-info-subtle-border text-info-foreground',
+		info: 'bg-info-subtle-bg border-info-subtle-border',
 		success: 'bg-success-subtle-bg border-success-subtle-border',
 		warning: 'bg-warning-subtle-bg border-warning-subtle-border',
 		error: 'bg-destructive-subtle-bg border-destructive-subtle-border',
