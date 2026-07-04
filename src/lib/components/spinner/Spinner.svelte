@@ -12,20 +12,38 @@
 	let {
 		class: className = '',
 		size = 'md',
+		label,
 		'aria-label': ariaLabel = 'Loading',
 		...rest
 	}: {
 		class?: string;
 		size?: 'sm' | 'md' | 'lg' | 'xl';
+		label?: string;
 		'aria-label'?: string;
 		[key: string]: unknown;
 	} = $props();
 </script>
 
-<MingcuteLoading3Fill
-	aria-label={ariaLabel}
-	class={cn('animate-spin', sizes[size], className)}
-	data-slot="spinner"
-	role="status"
-	{...rest}
-/>
+{#if label}
+	<span
+		class={cn('inline-flex items-center gap-2', className)}
+		data-slot="spinner-wrapper"
+		role="status"
+		{...rest}
+	>
+		<MingcuteLoading3Fill
+			aria-hidden="true"
+			class={cn('animate-spin shrink-0', sizes[size])}
+			data-slot="spinner"
+		/>
+		<span data-slot="spinner-label">{label}</span>
+	</span>
+{:else}
+	<MingcuteLoading3Fill
+		aria-label={ariaLabel}
+		class={cn('animate-spin', sizes[size], className)}
+		data-slot="spinner"
+		role="status"
+		{...rest}
+	/>
+{/if}

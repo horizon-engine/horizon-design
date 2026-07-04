@@ -795,6 +795,17 @@
 								<Spinner class="text-warning size-6" />
 								<Spinner class="text-destructive size-8" />
 							</div>
+							<Separator class="my-5" />
+							<p class="text-muted-foreground mb-3 text-xs font-semibold tracking-widest uppercase">
+								With label
+							</p>
+							<div class="flex flex-wrap items-center gap-5 text-sm">
+								<Spinner class="text-muted-foreground" label="Loading…" />
+								<Spinner class="text-primary" label="Fetching data…" />
+								<Spinner class="text-success" label="Saving changes…" />
+								<Spinner class="text-warning" label="Syncing…" />
+								<Spinner class="text-destructive" label="Retrying…" />
+							</div>
 						</div>
 					</Card>
 				</section>
