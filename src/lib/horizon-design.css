@@ -521,7 +521,7 @@
 	--steps-indicator-border: oklch(from var(--muted-foreground) l c h / 0.3);
 	--steps-separator: oklch(from var(--muted-foreground) l c h / 0.2);
 	--carousel-indicator-inactive: oklch(from var(--muted-foreground) l c h / 0.4);
-	--overlay-bg: oklch(0 0 0 / 0.6);
+	--overlay-bg: oklch(0 0 0 / 0.2);
 	--background-blur: oklch(from var(--background) l c h / 0.8);
 	--background-frosted: oklch(from var(--background) l c h / 0.95);
 	--popover-frosted: oklch(from var(--popover) l c h / 0.95);
