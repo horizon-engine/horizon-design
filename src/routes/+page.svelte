@@ -1587,6 +1587,7 @@
 								title="Default Alert"
 								description="This is a default informational alert message."
 							/>
+							<Alert variant="info" title="Info Alert" description="Saving your changes." />
 							<Alert
 								variant="success"
 								title="Success!"
