@@ -36,7 +36,7 @@
 			class="border-border bg-input text-foreground flex h-8 flex-1 items-center gap-2 rounded-lg border px-3 text-sm"
 			data-slot="clipboard-input"
 		>
-			<Clipboard.ValueText class="flex-1 truncate" />
+			<Clipboard.ValueText class="flex-1 truncate select-text" />
 		</div>
 		<Clipboard.Trigger
 			class="border-border hover:bg-accent text-muted-foreground hover:text-foreground relative inline-flex h-8 w-8 items-center justify-center gap-2 rounded-lg border transition-all"
